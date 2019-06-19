@@ -5,13 +5,14 @@ interface ImenuData {
     menuName:string
 }
 
-interface IcardInfo{
+export interface IcardInfo{
     cardIcon:string
     cardTitle:string
+    cardDescription:string
     cardHref:string
 }
 
-interface IcardData{
+export interface IcardData{
     menuIcon:string
     menuName:string
     cardInfo:IcardInfo[]

@@ -1,20 +1,25 @@
 import React from 'react';
 import { Card, Icon, Avatar } from 'antd';
+import { IcardInfo } from '../../../stores/home/index';
 import styles from './index.module.less';
 const { Meta } = Card;
 
-export default class CardItem extends React.Component {
+interface Iprops {
+    cardInfo: IcardInfo
+}
+export default class CardItem extends React.Component<Iprops> {
     render() {
+        const { cardInfo: { cardIcon, cardTitle, cardDescription,cardHref } } = this.props;
         return (
             <Card
-                className ={styles.cardItem}
+                className={styles.cardItem}
                 hoverable
             >
                 <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Card title"
-                    description="This is the description"
-                    className = {styles.meta}
+                    avatar={<Avatar src={cardIcon} />}
+                    title={cardTitle}
+                    description={cardDescription}
+                    className={styles.meta}
                 />
             </Card>
         )
