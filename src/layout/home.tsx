@@ -38,7 +38,7 @@ export default class HomeLayout extends React.Component<Iprops>{
             })}
           </Menu>
         </Sider>
-        <Layout>
+        <Layout style={{paddingBottom:20}}>
           {this.props.children}
         </Layout>
       </Layout>
