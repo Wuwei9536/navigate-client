@@ -1,32 +1,35 @@
 import { observable, action, autorun } from 'mobx';
 
-interface ImenuData {
-    menuIcon:string
-    menuName:string
+export interface IcardInfo {
+	cardIcon: string;
+	cardTitle: string;
+	cardDescription: string;
+	cardHref: string;
 }
 
-export interface IcardInfo{
-    cardIcon:string
-    cardTitle:string
-    cardDescription:string
-    cardHref:string
-}
-
-export interface IcardData{
-    menuIcon:string
-    menuName:string
-    cardInfo:IcardInfo[]
+export interface IcardData {
+	menuIcon: string;
+	menuName: string;
+	cardInfo: IcardInfo[];
 }
 
 interface IhomeStore {
-    menuData:ImenuData[]
-    cardData:IcardData[]
+	cardData: IcardData[];
 }
 
-class HomeStore implements IhomeStore{
-    @observable menuData = []
+class HomeStore implements IhomeStore {
+	@observable
+	cardData: IcardData[] = [
+		{
+			menuIcon: '',
+			menuName: '',
+			cardInfo: []
+		}
+	];
 
-    @observable cardData = []
+	@action
+	init = (data: IcardData[]) => {
+		this.cardData = data;
+	};
 }
-
-export default new HomeStore()
+export default new HomeStore();

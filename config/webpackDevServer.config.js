@@ -74,6 +74,7 @@ module.exports = function(proxy, allowedHost) {
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
     host,
+    port: 8000,
     overlay: false,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
@@ -81,7 +82,15 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy:{
+      '/graphql': {
+        changeOrigin: true,
+        target: 'http://localhost:3000/graphql',
+        // pathRewrite: {
+        //   '^/mock': '',
+        // },
+      },
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons

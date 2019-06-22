@@ -1,16 +1,27 @@
-.cardItem{
-    width: 280px;
+.cardItem {
+    width        : 270px;
     border-radius: 8px;
-    margin: 20px 20px 0px 0px
+    margin       : 20px 20px 0px 0px
 }
 
-.meta{
-    :global{
-        .ant-card-meta-title{
+.meta {
+    :global {
+        .ant-card-meta-title {
             color: #3273dc
         }
-        .ant-card-meta-description{
-            color: gray
+
+        .ant-card-meta-description {
+            font-size         : 12px;
+            line-height       : 20px;
+            color             : gray;
+            overflow          : hidden;
+            text-overflow     : ellipsis;
+            /* autoprefixer   : ignore next */
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            word-break        : break-all;
+            display           : -webkit-box;
+            height         : 40px;
         }
     }
 }

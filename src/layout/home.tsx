@@ -1,10 +1,14 @@
 import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import styles from './home.module.less';
+import { IcardData } from '../stores/home/index';
+
 
 const { Sider } = Layout;
-
-export default class HomeLayout extends React.Component {
+interface Iprops {
+  menuInfo: IcardData[]
+}
+export default class HomeLayout extends React.Component<Iprops>{
   state = {
     collapsed: false,
   };
@@ -16,23 +20,22 @@ export default class HomeLayout extends React.Component {
   };
 
   render() {
+    const { menuInfo } = this.props;
+    console.log('%cmenuInfo: ', 'font-size:15px;background-color: rgb(135, 208, 104);', menuInfo);
     return (
       <Layout className={styles.layout}>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
+        <Sider trigger={null} collapsible collapsed={this.state.collapsed} className={styles.sider}>
+          <div className={styles.logo}>WEB 前端导航</div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
+            {menuInfo.map((item,index) => {
+              const { menuIcon, menuName } = item;
+              return (
+                <Menu.Item key={index}>
+                  <Icon type="user" />
+                  <span>{menuName}</span>
+                </Menu.Item>
+              )
+            })}
           </Menu>
         </Sider>
         <Layout>
