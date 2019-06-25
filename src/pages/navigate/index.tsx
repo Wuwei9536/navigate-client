@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { toJS } from 'mobx';
 import { Client, getCardDataQuery } from '../../service/navigate';
