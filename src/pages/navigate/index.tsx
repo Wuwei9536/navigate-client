@@ -1,31 +1,31 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { toJS } from 'mobx';
-import { Client, getCardDataQuery } from '../../service/navigate';
-import HomeLayout from '../../layout/home';
+import { Client, getCardData } from '../../service/navigate';
+import NavigateLayout from '../../layout/navigate';
 import CategoryCard from '../../components/categoryCard';
 
 interface Iprops {
-	HomeStore?: any;
+	NavigateStore?: any;
 }
 
-@inject('HomeStore')
+@inject('NavigateStore')
 @observer
 class Navigate extends React.Component<Iprops> {
 	async componentDidMount() {
-		const { HomeStore } = this.props;
-		await Client.request(getCardDataQuery).then((data) => {
+		const { NavigateStore } = this.props;
+		await Client.request(getCardData).then((data) => {
 			const { cardDatas } = data;
-			HomeStore.init(cardDatas);
+			NavigateStore.init(cardDatas);
 		});
 	}
 	render() {
-		const { HomeStore: { cardData } } = this.props;
+		const { NavigateStore: { cardData } } = this.props;
 
 		return (
-			<HomeLayout menuInfo={toJS(cardData)}>
+			<NavigateLayout menuInfo={toJS(cardData)}>
 				<CategoryCard cardData={toJS(cardData)} />
-			</HomeLayout>
+			</NavigateLayout>
 		);
 	}
 }

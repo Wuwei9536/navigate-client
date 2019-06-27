@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Avatar } from 'antd';
-import { IcardInfo } from '../../../stores/home/index';
+import { IcardInfo } from '../../../stores/navigate';
 import styles from './index.module.less';
 
 const { Meta } = Card;

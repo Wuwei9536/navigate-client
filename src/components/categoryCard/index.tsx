@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, Icon } from 'antd';
 import CardItem from './cardItem';
-import { IcardData } from '../../stores/home/index';
+import { IcardData } from '../../stores/navigate';
 import styles from './index.module.less';
 
 const IconFont = Icon.createFromIconfontCN({

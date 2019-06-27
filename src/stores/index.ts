@@ -1,8 +1,8 @@
 import { configure } from 'mobx'
-import HomeStore from './home/index'
+import NavigateStore from './navigate/index'
 
 configure({ enforceActions: "observed" })
 
 export default {
-    HomeStore
+    NavigateStore
 }

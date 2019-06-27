@@ -15,11 +15,11 @@ export interface IcardData {
 	cardInfo: IcardInfo[];
 }
 
-interface IhomeStore {
+interface InavigateStore {
 	cardData: IcardData[];
 }
 
-class HomeStore implements IhomeStore {
+class NavigateStore implements InavigateStore {
 	@observable
 	cardData: IcardData[] = [
 		{
@@ -35,4 +35,4 @@ class HomeStore implements IhomeStore {
 		this.cardData = data;
 	};
 }
-export default new HomeStore();
+export default new NavigateStore();
