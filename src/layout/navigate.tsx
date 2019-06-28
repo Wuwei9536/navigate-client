@@ -1,15 +1,10 @@
 import React from 'react';
-import { Layout, Menu, Icon} from 'antd';
+import { Layout, Menu } from 'antd';
 import styles from './navigate.module.less';
 import { IcardData } from '../stores/navigate';
 import NavHeader from './components/navHeader';
 
 const { Sider } = Layout;
-// const { SubMenu } = Menu;
-const IconFont = Icon.createFromIconfontCN({
-	scriptUrl: '//at.alicdn.com/t/font_1259557_zsmza8iko9.js'
-});
-
 interface Iprops {
 	menuInfo: IcardData[];
 }
@@ -30,15 +25,21 @@ export default class NavigateLayout extends React.Component<Iprops> {
 		const { collapsed } = this.state;
 		return (
 			<Layout className={styles.layout}>
-				<Sider trigger={null} collapsible collapsed={this.state.collapsed} className={styles.sider}>
+				<Sider
+					trigger={null}
+					collapsible
+					collapsed={this.state.collapsed}
+					theme="light"
+					className={styles.sider}
+				>
 					<div className={styles.logo}>WEB 前端导航</div>
-					<Menu theme="dark" mode="inline" defaultSelectedKeys={[ '0' ]}>
+					<Menu theme="light" mode="inline" defaultSelectedKeys={[ '0' ]}>
 						{menuInfo.map((item, index) => {
 							const { menuIcon, menuName } = item;
 							return (
 								<Menu.Item key={index}>
 									<a href={`#${menuName}`}>
-										<IconFont type={menuIcon} />
+										<img src={`/img/${menuIcon}`} className={styles.menuImg} alt={`${menuIcon}`} />
 										<span>{menuName}</span>
 									</a>
 								</Menu.Item>

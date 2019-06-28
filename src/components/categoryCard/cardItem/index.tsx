@@ -17,7 +17,7 @@ export default class CardItem extends React.Component<Iprops> {
 		return (
 			<Card className={styles.cardItem} hoverable onClick={(e) => this.handleClick(cardHref)}>
 				<Meta
-					avatar={<Avatar src={require(`${cardIcon}`)} />}
+					avatar={<Avatar src={`/img/${cardIcon}`} />}
 					title={cardTitle}
 					description={cardDescription}
 					className={styles.meta}

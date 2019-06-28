@@ -1,12 +1,9 @@
 import React, { Fragment } from 'react';
-import { Card, Icon } from 'antd';
+import { Card } from 'antd';
 import CardItem from './cardItem';
 import { IcardData } from '../../stores/navigate';
 import styles from './index.module.less';
 
-const IconFont = Icon.createFromIconfontCN({
-	scriptUrl: '//at.alicdn.com/t/font_1259557_zsmza8iko9.js'
-});
 interface Iprops {
 	cardData: IcardData[];
 }
@@ -20,7 +17,7 @@ export default class CategoryCard extends React.Component<Iprops> {
 					return (
 						<Card bordered={false} className={styles.categoryCard} key={id}>
 							<div id={menuName} className={styles.menuName}>
-								<IconFont type={menuIcon} style={{ width: '2em' }} />
+								<img src={`/img/${menuIcon}`} className={styles.menuImg} alt={`${menuIcon}`}/>
 								{menuName}
 							</div>
 							<div className={styles.categoryCardBody}>

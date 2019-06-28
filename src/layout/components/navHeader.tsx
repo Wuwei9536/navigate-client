@@ -1,15 +1,14 @@
 import React, { useState, ReactElement } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Layout, Icon, Dropdown, Button, Modal, Form, Menu, Input } from 'antd';
-import { Client, createMenu, createCard, deleteCard, getCardData } from '../../../service/navigate';
+import UploadImg from './uploadImg';
+import { Client, createMenu, createCard, deleteCard, getCardData } from '../../service/navigate';
 import { FormComponentProps } from 'antd/lib/form/Form';
-import styles from '../../navigate.module.less';
+import styles from '../navigate.module.less';
 const { Header } = Layout;
 interface IdropmenuClickParam {
 	item: ReactElement;
 	key: string;
-	// keyPath;
-	// domEvent;
 }
 
 interface InavHeader extends FormComponentProps {
@@ -30,46 +29,47 @@ const createCardField = [
 const deleteCardField = [ { cn: '网站标题', en: 'card_title' } ];
 
 const NavHeader: React.FC<InavHeader> = inject('NavigateStore')(
-	observer(({ collapsed, toggle, form, NavigateStore}) => {
+	observer(({ collapsed, toggle, form, NavigateStore }) => {
 		const [ visible, setVisible ] = useState<boolean>(false);
 		const [ modalStyle, setModalStyle ] = useState<string>('');
 		const [ modalTitle, setModalTitle ] = useState<string>('');
+		const [ iconName, setIconName ] = useState<string>('');
+
+		const saveIconName = (name: string) => {
+			setIconName(name);
+		};
 
 		const handleOk = (e: any) => {
-			setVisible(false);
-			form.validateFields((err, values) => {
+			form.validateFields(async (err, values) => {
 				if (!err) {
 					switch (modalStyle) {
 						case 'createMenu':
-							Client.request(createMenu, values).then((data) => {
-								console.log(data);
-							});
+							values.menu_icon = iconName;
+							await Client.request(createMenu, values);
 							break;
 						case 'createCard':
-							Client.request(createCard, values).then((data) => {
-								console.log(data);
-							});
+							values.card_icon = iconName;
+							await Client.request(createCard, values);
 							break;
 						case 'deleteCard':
-							Client.request(deleteCard, values).then((data) => {
-								console.log(data);
-							});
+							await Client.request(deleteCard, values);
 							break;
 						default:
 							break;
 					}
-					Client.request(getCardData).then((data) => {
-                        console.log(data);
-                        const { cardDatas } = data;
-                        NavigateStore.init(cardDatas);
+					await Client.request(getCardData).then((data) => {
+						const { cardDatas } = data;
+						NavigateStore.init(cardDatas);
 					});
+					setVisible(false);
 				}
 			});
+			setIconName('');
 		};
 
 		const handleCancel = (e: any) => {
-			console.log(e);
 			setVisible(false);
+			setIconName('');
 		};
 
 		const handleDropmenuClick = ({ item, key }: IdropmenuClickParam) => {
@@ -107,7 +107,11 @@ const NavHeader: React.FC<InavHeader> = inject('NavigateStore')(
 			return (
 				<Form>
 					{modalFiled.map((item) => {
-						return (
+						return item.en === 'menu_icon' || item.en === 'card_icon' ? (
+							<Form.Item label={`${item.cn}`} key={item.en}>
+								<UploadImg saveIconName={saveIconName} />
+							</Form.Item>
+						) : (
 							<Form.Item label={`${item.cn}`} key={item.en}>
 								{getFieldDecorator(`${item.en}`, {
 									rules: [ { required: true, message: `请输入${item.cn}` } ]
