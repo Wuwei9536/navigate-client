@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Card } from 'antd';
+import { Card,Row } from 'antd';
 import CardItem from './cardItem';
 import { IcardData } from '../../stores/navigate';
 import styles from './index.module.less';

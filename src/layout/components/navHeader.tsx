@@ -124,7 +124,7 @@ const NavHeader: React.FC<InavHeader> = inject('NavigateStore')(
 		};
 
 		return (
-			<Header style={{ background: '#fff' }}>
+			<Header className={styles.navHeader}>
 				<Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} onClick={toggle} />
 				<Dropdown overlay={renderDropmenu}>
 					<Button className={styles.editIcon}>

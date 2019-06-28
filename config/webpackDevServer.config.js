@@ -84,7 +84,7 @@ module.exports = function (proxy, allowedHost) {
     proxy: {
       '/graphql': {
         changeOrigin: true,
-        target: 'http://localhost:3001',
+        target: 'http://nav.wwwien.top:3001',
       },
       '/api': {
         changeOrigin: true,

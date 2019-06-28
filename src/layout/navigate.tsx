@@ -47,7 +47,7 @@ export default class NavigateLayout extends React.Component<Iprops> {
 						})}
 					</Menu>
 				</Sider>
-				<Layout style={{ paddingBottom: 20, position: 'relative' }}>
+				<Layout className={styles.contentLayout}>
 					<NavHeader collapsed={collapsed} toggle={this.toggle} />
 					{this.props.children}
 				</Layout>
