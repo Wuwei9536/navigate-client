@@ -1,6 +1,6 @@
 import {GraphQLClient} from 'graphql-request';
 
-export const Client = new GraphQLClient('http://localhost:3001/graphql', {
+export const Client = new GraphQLClient('/graphql', {
   headers: {
     Authorization: 'Bearer __YOUR_SERVICE_TOKEN__',
   },

@@ -82,6 +82,10 @@ module.exports = function (proxy, allowedHost) {
     },
     public: allowedHost,
     proxy: {
+      '/graphql': {
+        changeOrigin: true,
+        target: 'http://nav.wwwien.top:3001',
+      },
       '/api': {
         changeOrigin: true,
         target: 'http://localhost:3001',
@@ -93,7 +97,7 @@ module.exports = function (proxy, allowedHost) {
         changeOrigin: true,
         target: 'http://nav.wwwien.top:4002',
         pathRewrite: {
-          '^/img/': '',
+          '^/img': '',
         },
       }
     },
