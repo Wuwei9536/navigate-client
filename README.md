@@ -26,3 +26,15 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## 参考
+
+本项目参考 alloyteam前端网站导航设计 , 根据其项目效果实现 .
+
+地址: http://www.alloyteam.com/nav/
+
+本项目初始数据来源 https://github.com/Hulkye/FrontEndNav .
+
+仅作自用,练手项目。
+
+
